@@ -1,850 +1,263 @@
+@import "https://fonts.googleapis.com/css?family=Barlow&display=swap";
+@import "https://fonts.googleapis.com/css?family=Barlow+Condensed&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Bitter&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Bitter&family=Roboto:wght@300&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500&family=Roboto:wght@300;500&display=swap";
+@import "https://fonts.googleapis.com/css?family=Ropa+Sans&display=swap";
 
-body {
-   background: linear-gradient(90deg, #eaeeff 60%, #ffffff 60%);
-}
-*:focus {
-   outline: none;
-}
+/* === NAVIGATION ELEMENTS === */
 
-a {
-   color: #D2A517;
-}
-
-h4 {
-   font-family: 'Ropa Sans', sans-serif;
-   padding-left: 30px;
-   padding-top: 25px;
-   padding-bottom: 15px;
-   color: #fff;
+nav {
+    font-size: 17px;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    padding-top: 23px;
+    animation: slide_down 0.4s ease-in;
 }
 
-.fa-shopping-cart {
-   padding-left: 30px;
-   font-size: 2em;
+nav a {
+    padding-left: 60px;
  }
 
-.container {
-   position: relative;
-   max-width: 100%;
-   padding: 0px;
-   z-index: 0;
+nav a:hover {
+    color: #ffd31d;
+    text-decoration: none;
 }
 
-#backPic {
-   position: absolute;
-   z-index: 1;
-   width: 100%;
-   text-align: center;
+nav .current {
+    color: #fff;
 }
 
-#backgroundPic {
-   max-width: 100%;
-   height: auto;
+/* === HEADER & FOOTER ELEMENTS === */
+
+.index-header-block {
+    width: 100%;
+    height: 100vh;
+    color: #fff;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400%, 400%;
+    position: relative;
+    animation: change 10s ease-in-out infinite;
 }
 
-#header {
-   position: absolute;
-   z-index: 1;
-   width: 100%;
-   background-color: #00306d;
-   height: 74px;
+.header-block {
+    width: 100%;
+    height: 100px;
+    background-color: #23a6d5;
 }
 
-.row {
-   position: absolute;
-   width: 100%;
-   z-index: 2;
-   margin: 0 auto;
+.header-container {
+    display: flex;
+    justify-content: space-evenly;
+    height: 70px;
+    max-width: 1324px;
+    margin-left: 50%;
+    margin-right: 50%;
 }
 
-#row-option, #quoteContainer {
-   position: absolute;
-   left: 50%;
-   transform: translate(-50%, 0%);
-   max-width: 1180px;
+.header-container-left, .footer-container-left {
+    width: 100%;
+    min-width: 662px;
+    max-width: 662px;
+    padding-left: 92px;
 }
 
-.btn-outline-primary {
-   font-family: 'Barlow Condensed', sans-serif;
-   margin-top: 18px;
-   margin-right: 6px;
-   color: #00306D;
-   border-color: #00306D;
-   border-radius: 0px;
-}
-
-.btn-outline-primary:hover {
-   color: #fff;
-   background-color: #475DA1;
-   border-color: #475DA1;
-   border-color: #fff;
-}
-
-.btn-primary {
-   font-family: 'Barlow Condensed', sans-serif;
-   margin-top: 18px;
-   margin-right: 5px;
-   background-color: #00306D;
-   border-color: #00306D;
-   border-radius: 0px;
-}
-
-.btn-primary:hover, .btn-update:hover {
-   background-color: #475DA1;
-   border-color: #475DA1;
-   color: #fff;
-}
-
-#searchBtn {
-   margin-top: 365px;
-   padding-left: 40px;
-   padding-right: 40px;
-   font-size: 18px;
-}
-
-#shopBtn {
-   margin-top: 30px;
-   padding-left: 40px;
-   padding-right: 40px;
-   font-size: 18px;
-   font-style: normal;
-   z-index: 1;
-}
-
-#pageTitle {
-   font-family: 'Barlow Condensed', sans-serif;
-   font-size: 64px;
-   color: #fff;
-   position: absolute;
-   z-index: 3;
-   margin-left: 60px;
-   margin-top: 95px;
-}
-
-#pageText {
-   position: absolute;
-   z-index: 4;
-   margin-left: 60px;
-   margin-top: 180px;
-}
-
-#indexText {
-   font-family: 'Barlow', sans-serif;
-   font-size: 16px;
-   color: #fff;
-}
-
-.search {
-   position: absolute;
-   z-index: 5;
-   margin-left: 60px;
-}
-
-#search {
-   margin-top: 400px;
-}
-
-input {
-   margin-top: 350px;
-   font-size: 16px;
-   width: 400px;
-   padding: 11px;
-   border: 1px solid;
-   border-color: #DADADA;
-   margin-bottom: 15px;
-}
-
-#quoteBlock {
-   height: 350px;
-   background-color: #eaeeff;
-   padding-top: 70px;
-   padding-left: 170px;
-   padding-right: 170px;
-   margin-top:0px;
-   text-align: center;
-   font-size: 16px;
-   font-style: italic;
-   line-height: 160%;
-   color: #1F2A3C;
-}
-
-#quoteText {
-   color: #222222;
-}
-
-#optionBlock {
-   height: 300px;
-   background-color: #fff;
-   padding-top: 60px;
-   padding-left: 100px;
-   padding-right: 100px;
-   margin-top:0px;
-   text-align: center;
-   color: #1F2A3C;
-}
-
-#loginBlock {
-   margin-top: 60px;
-   height: 700px;
-   background-color: #fff;
-   padding-top: 180px;
-   padding-left: 100px;
-   padding-right: 100px;
-   margin-top:0px;
-   text-align: center;
-   color: #1F2A3C;
-}
-
-#planeDataBlock {
-   width: 100%;
-   margin-top: 60px;
-   height: 950px;
-   background-color: #fff;
-   padding-top: 130px;
-   margin-top:0px;
-   text-align: center;
-   color: #1F2A3C;
-   background-color: #eaeeff;
-}
-
-#createAccountBlock {
-   margin-left: auto;
-   margin-right: auto;
-   max-width: 1440px;;
-   margin-top: 60px;
-   height: 925px;
-   background-color: #fff;
-   padding-top: 150px;
-   padding-left: 100px;
-   padding-right: 100px;
-   margin-top:0px;
-   text-align: center;
-   color: #1F2A3C;
-   background: linear-gradient(100deg, #eaeeff 60%, #ffffff 60%);
-   display: flex;
-}
-
-#createAdminAccountBlock {
-   margin-top: 60px;
-   height: 725px;
-   background-color: #fff;
-   padding-top: 150px;
-   padding-left: 100px;
-   padding-right: 100px;
-   margin-top:0px;
-   text-align: center;
-   color: #1F2A3C;
-   background: linear-gradient(100deg, #eaeeff 60%, #ffffff 60%);
-   display: flex;
-}
-
-#optionTitle {
-   font-family: 'Barlow Condensed', sans-serif;
-   font-size: 20px;
-   font-weight: bold;
-   text-align: left;
-   margin-bottom: 0px;
-}
-
-#optionText {
-   font-family: 'Barlow', sans-serif;
-   text-align: left;
-}
-
-#orderConfText {
-   font-family: 'Barlow', sans-serif;
-   text-align: left;
-   padding-left: 40px;
-   padding-right: 40px;
-}
-
-#optionPic {
-   padding-top: 5px;
-   padding-right: 15px;
-}
-
-.optionContainer {
-   display: flex;
-}
-
-/* Footer styles */
-
-.footer {
-   bottom: 0;
-   height: 340px;
-   background-color: #222222;
-   /* position: relative; */
-}
-
-#container-footer {
-   color: #fff;
-   padding-top: 50px;
-   max-width: 1440px;
-}
-
-#footer-row {
-   display: flex;
-   margin-left: 0 auto;
-   margin-right: 0 auto;
-}
-
-#footColLeft {
-   text-align: left;
-   padding-left: 140px;
-}
-
-#footColRight {
-   text-align: right;
-   padding-right: 100px;
-}
-
-.footerTitleText {
-   font-family: 'Barlow', sans-serif;
-   font-size: 16px;
-   color: #999999;
-   padding-top: 8px;
-}
-
-.footerTitleSubText {
-   font-family: 'Barlow', sans-serif;
-   font-size: 14px;
-}
-
-/* Login styles */
-
-.form-signin {
-   width: 100%;
-   max-width: 330px;
-   padding: 15px;
-   margin: auto;
- }
- .form-signin .checkbox {
-   font-weight: 400;
- }
- .form-signin .form-control {
-   position: relative;
-   box-sizing: border-box;
-   height: auto;
-   padding: 10px;
-   font-size: 16px;
- }
- .form-signin .form-control:focus {
-   z-index: 2;
- }
- .form-signin input[type="email"] {
-   margin-bottom: -1px;
-   border-bottom-right-radius: 0;
-   border-bottom-left-radius: 0;
- }
- .form-signin input[type="password"] {
-   margin-bottom: 10px;
-   border-top-left-radius: 0;
-   border-top-right-radius: 0;
- }
-
- #inputUsername, #inputPassword {
-    margin-top: 0px;
- }
-
- .dataEntryField {
-    margin-top: 0px;
-    margin-left: 0px;
-    font-size: 16px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 10px;
-    color: #485057;
-    background-color: #F5F5F5;
- }
-
- .dataEntryField:focus {
-    border-color: #00306d;
- }
-
- .dataEntryFieldSmall {
-   margin-top: 0px;
-   margin-left: 0px;
-   font-size: 16px;
-   padding-top: 5px;
-   padding-bottom: 5px;
-   padding-left: 10px;
-   border-radius: 0px;
-   color: #485057;
-   width: 100px;
-   background-color: #F5F5F5;
-}
-
-.dataEntryFieldSmall:focus {
-   border-color: #00306d;
-}
-
-.form-control {
-   border-radius: 0px;
-   border-color: #D6D7DA;
-   background-color: #F5F5F5;
-}
-
- #dataLabel {
+.header-container-right, .footer-container-right {
+    width: 100%;
     text-align: right;
-    padding-top: 6px;
- }
-
- .containerPlaneData {
-    text-align: left;
-    width: 300px;
- }
-
- #exampleFormControlTextarea1 {
-    width: 400px;
- }
-
- .form-group {
-    text-align: left;
-    width: 500px;
-    margin-bottom: 0px;
- }
-
-.form-groupB {
-    text-align: left;
-    width: 500px
+    justify-content: center;
+    padding-right: 92px;
+    min-width: 662px;
+    max-width: 662px;
 }
 
-.form-groupC {
-    text-align: left;
-    width: 500px;
+.footer-block {
+    background-color: #101010;
 }
 
-.form-check-label {
-    display: inline-block;
-    width: 140px;
-    text-align: left;
+.footer-container {
+    display: flex;
+    justify-content: space-evenly;
+    height: 340px;
+    max-width: 1324px;
+    margin-left: 50%;
+    margin-right: 50%;
 }
 
- .form-control {
-    margin-top: 0px;
-    width: 336px;
+.team-name {
+    font-family: 'Ropa Sans', sans-serif;
+    font-size: 24px;
+    color: #fff;
+    padding-top: 16px;
+    animation: slide_down 0.4s ease-in;
+}
+
+.team-name-static {
+    font-family: 'Ropa Sans', sans-serif;
+    font-size: 24px;
+    color: #fff;
+    padding-top: 16px;
+}
+
+.page-title {
+    font-family: 'Bitter', serif;
+    font-size: 42px;
+    padding-top: 25%;
+    animation: title_slide_up 0.4s ease-in;
+}
+
+.page-title-sub {
+    font-family: 'Bitter', serif;
+    font-size: 24px;
+    margin-top: -14px;
+    animation: title_slide_up 0.4s ease-in;
+}
+
+.page-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: #fff;
+    padding-top: 18px;
+    line-height: 1.8;
+    animation: page_text_slide_up 0.4s ease-in;
+}
+
+.main-block {
+    background-color: green;
+}
+
+.team-logo, .csumb-logo {
+    padding-top: 48px;
+}
+
+.footer-title-text {
+    font-family: 'Barlow', sans-serif;
+    font-size: 16px;
+    color: #999999;
+    padding-top: 8px;
+}
+
+.footer-title-subtext {
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: #fff;
+}
+
+.game-select-container {
+    margin-top: 25%;
+    width: 100%;
+    text-align: center;
+}
+
+.game-select {
+    background-color: #fff;
+    width: 350px;
+    height: 425px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+    box-shadow: 0 10px 20px 0px rgba(0,0,0,0.25);
+    animation: slide_down 0.4s ease-in;
+}
+
+ #game-select-title {
+     font-family: 'Barlow Condensed', sans-serif;
+     color: #101010;
+     padding-top: 32px;
+ }
+
+ #game-select-title-subtext {
+     font-size: 12px;
+     color: #101010;
+     margin-top: 15px;
  }
 
  #formLabel {
     font-size: 12px;
+    color: #101010;
+    text-align: left;
+    margin-bottom: 3px;
  }
 
- .form-control::-webkit-input-placeholder {
-   color: #999DA3;
-   font-family: 'Barlow', sans-serif;
-   font-size: 16px;
+ .form-group {
+     text-align: left;
  }
 
-#checkboxText {
-   padding-left: 25px;
-   padding-top: 3px;
-   font-size: 12px;
-   width: 336px;
-}
-
-.form-check-input {
-   margin-left: 0px;
-   margin-top: 7px;
-}
-
-#checkRow {
-   display: flex;
-}
-
-#createAccountContainer {
-   background-color: #fff;
-   padding-left: 40px;
-   width: 416px;
-   height: 425px;
-   margin-right: 0px;
-}
-
-#signUpContainer {
-   background-color: #fff;
-   padding-left: 40px;
-   width: 416px;
-   height: 680px;
-   margin-right: 0px;
-}
-
-#adminLoginContainer {
-   background-color: #fff;
-   padding-left: 40px;
-   width: 416px;
-   height: 380px;
-   margin-right: 0px;
-}
-
-#dataEntryContainer {
-   background-color: #fff;
-   padding-left: 40px;
-   width: 80%;
-   min-width: 950px;
-   height: 725px;
-   margin: 0 auto;
-}
-
-#airplaneSearchContainer {
-   background-color: #fff;
-   padding-left: 50px;
-   width: 350px;
-   height: 505px;
-   margin-right: 0px;
-}
-
-#createAccountTitle {
-   font-family: 'Barlow Condensed', sans-serif;
-   padding-top: 32px;
-   text-align: left;
-}
-
-#adminListTitle {
-   font-family: 'Barlow Condensed', sans-serif;
-   padding-top: 125px;
-   text-align: left;
-}
-
-#account-btn {
-   font-family: 'Barlow Condensed', sans-serif;
-   width: 336px;
-   border-radius: 0px;
-}
-
-#lginText {
-   font-family: 'Barlow', sans-serif;
-   font-size: 15px;
-}
-
-#loginPhoto {
-   padding-left: 50px;
-   padding-top: 25px;
-}
-
-#airplaneSearchPhoto {
-   padding-left: 50px;
-   padding-top: 55px;
-}
-
-#loginErrorText {
-   font-size: 12px;
-   color: red;
-   padding-left: 10px;
-}
-#tableList {
-   text-align:center;
-   width:90%;
-   margin: 0 auto;
-   font-family: 'Barlow', sans-serif;
-   font-size: 14px;
-   margin-bottom: 70px;
-}
-
-#tableListCart {
-   text-align:center;
-   width:90%;
-   margin: 0 auto;
-   font-family: 'Barlow', sans-serif;
-   font-size: 14px;
-   margin-bottom: 70px;
-}
-
-.listImage {
-  padding: 5px;
-}
-
-.custom-select {
-   height: 36px;
-   margin-bottom: 17px;
-   background-color: #F5F5F5;
-   margin-top: 0px;
-   margin-left: 0px;
-   font-size: 16px;
-   padding-top: 5px;
-   padding-bottom: 5px;
-   padding-left: 10px;
-   border-radius: 0px;
-   width: 100px;
-   background-color: #F5F5F5;
-}
-
-#reset-btn {
-   background-color: #8A8699;
-   border-color: #8A8699;
-   width: 100px;
-}
-
-#reset-btn:hover, .btn-delete:hover, .btn-remove-cart:hover {
-   background-color: rgba(138, 134, 153, 0.788);
-   border-color: rgba(138, 134, 153, 0.788);
-   color: #fff;
-}
-
-#submit-btn {
-   width: 100px;
-}
-
-#data-row {
-   width: 1100px;
-}
-
-#dataInputSectionLabel {
-   font-family: 'Barlow Condensed', sans-serif;
-   font-size: 18px;
-}
-
-th {
-   font-family: 'Barlow Condensed', sans-serif;
-   font-weight: normal;
-   font-size: 17px;
-}
-
-thead {
-   color: #fff;
-   background-color: #475da1;
-}
-
-#addNewListing {
-   margin: 0 auto;
-   width: 90%;
-   text-align: right;
-   padding-bottom: 10px;
-}
-
-.btn-update {
-   font-family: 'Barlow Condensed', sans-serif;
-   margin-top: 7px;
-   margin-right: 5px;
-   background-color: #00306D;
-   border-color: #00306D;
-   color: #fff;
-   border-radius: 0px;
-}
-
-.btn-delete {
-   font-family: 'Barlow Condensed', sans-serif;
-   margin-top: 10px;
-   margin-right: 6px;
-   background-color: #8A8699;
-   border-color: #8A8699;
-   border-radius: 0px;
-   color: #fff;
-}
-
-.btn-remove-cart {
-   font-family: 'Barlow Condensed', sans-serif;
-   margin-top: 0px;
-   margin-right: 6px;
-   background-color: #8A8699;
-   border-color: #8A8699;
-   border-radius: 0px;
-   color: #fff;
-}
-
-.btn-confirm-cart {
-   font-family: 'Barlow Condensed', sans-serif;
-   margin-top: 0px;
-   margin-right: 6px;
-   background-color: #D2A517;
-   border-color: #D2A517;
-   border-radius: 0px;
-   color: #fff;
-   padding-left: 30px;
-   padding-right: 30px;
-}
-
-#navContainer {
-   padding-top: 23px;
-   text-align: right;
-   padding-right: 30px;
-}
-
-.navLinkHidden {
-    display: none;
-}
-
-.navLink {   
-   color: #fff;
-   font-family: 'Barlow Condensed', sans-serif;
-   font-size: 18px;
-   padding-left: 35px;
-   text-decoration: none;
-}
-
-.navLink:hover {
-   color: #d2a517;
-   text-decoration: none;
-} 
-
-#passField {
-   display: flex;
-}
-
-#dropdownMenuMake, #dropdownMenuEngine {
-   width: 250px;
-}
-
-.to {
-   padding-left: 12px;
-   padding-right: 13px;
-}
-
-#resetSearch-btn {
-   background-color: #8A8699;
-   border-color: #8A8699;
-   width: 121px;
-}
-
-#submit-btn-airplane {
-   width: 121px;
-}
-
-#aircraftDetails {
-   text-align: left;
-}
-
-#searchLabel {
-   font-family: 'Barlow', sans-serif;
-   font-weight: bold;
-   padding-left: 30px;
-   padding-right: 15px;
-   width: 140px;
-}
-
-#searchRow {
-   display: flex;
-}
-
-#searchResultsBlock {
-   background-color: #fff;
-   color: #1F2A3C;
-   background: #eaeeff;
-   display: flex;
-}
-
-#searchResultsContainer {
-   padding-top: 0px;
-   padding-bottom: 15px;
-   margin-top: 130px;
-   margin-bottom: 70px;
-   width: 900px;
-   background-color: #fff;
-   min-height: 700px;
-}
-
-#searchResultsTitle {
-   font-family: 'Barlow Condensed', sans-serif;
-   padding-top: 50px;
-   padding-left: 45px;
-   padding-bottom: 10px;
-   text-align: left;
-}
-
-#resultsContainer {
-   margin: 0 auto;
-}
-
-#add-cart-btn {
-   margin-top: 5px;
-   margin-right: 23px;
-}
-
-#picFrame {
-   text-align: right;
-}
-
-.airplanePhoto4 {
-   margin-top: 50px;
-}
-
-#noSearchResult {
-   font-family: 'Barlow', sans-serif;
-   padding-left: 45px;
-}
-
-#termsContainer {
-   font-family: 'Barlow', sans-serif;
-   font-size: 14px;
-   padding-left: 50px;
-   padding-right: 50px;
-   padding-top: 30px;
-}
-
-.adminDash {
-   padding-right: 40px;
-   height: 605px !important;
-}
-
-#btn-plane-inventory, #btn-enter-plane, #planes, #passFail, #average {
-   width: 330px;
-}
-
-#planes, #passFail, #average {
-   margin-bottom: 10px;
-}
-
-#reportTitle {
-   font-family: 'Barlow Condensed', sans-serif;
-   font-size: 18px;
-   text-align: left;
-}
-
-#reportOutput {
-   font-family: 'Barlow', sans-serif;
-   font-size: 14px;
-   margin-top: 10px;
-   padding-top: 10px;
-   padding-left: 15px;
-   padding-right: 15px;
-   background-color: #E0E0E0;
-   height: 130px;
-   width: 330px;
-}
-
-#inCartText {
-   font-family: 'Barlow Condensed', sans-serif;
-   font-size: 18px;
-   padding-right: 10px;
-   color: #d2a517;
-}
-
-/* check box */
-
-input[type=checkbox] {
-   -webkit-appearance: none;
-   -moz-appearance: none;
- }
- 
- input[type=checkbox]::-ms-check {
-   display: none;
+ .form-control {
+     margin-bottom: 8px;
  }
 
- input[type=checkbox] {
-   position: relative;
-   transform: translate(-900%, 0%);
-   width: 1em;
-   height: 1em;
-   border: 1px solid #d6d7da;
-   vertical-align: -2px;
-   color: #00306d;
-   background-color: #F5F5F5;
+ .custom-select {
+     margin-bottom: 18px;
  }
- 
- input[type=checkbox]::before {
-   content: "x";
-   position: absolute;
-   font-size: 1.2em;
-   right: 0.15em;
-   top: -0.5em;
-   visibility: hidden;
+
+ #submit-btn-game {
+     width: 100%;
+     height: 42px;
  }
- 
- input[type=checkbox]:checked::before {
-   /* Use `visibility` instead of `display` to avoid recalculating layout */
-   visibility: visible;
+
+ .game-stage-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: #fff;
  }
- 
- input[type=checkbox]:disabled {
-   border-color: black;
-   background: #ddd;
-   color: #DADADA;
+
+ .game-stage {
+     width: 100%;
+     min-width: 1324px;
+     max-width: 1324px;
+     padding-left: 92px;
+     background-color: #fff;
+ }
+
+/* === ANIMATION ELEMENTS === */
+
+ @keyframes change {
+    0% {
+        background-position: 0 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
+ }
+
+ @keyframes slide_down {
+     0% {
+         transform: translateY(-45px);
+     }
+     100% {
+        transform: translateY(0px);
+    }
+ }
+
+ @keyframes title_slide_up {
+    0% {
+        transform: translateY(150px);
+    }
+    100% {
+       transform: translateY(0px);
+   }
+ }
+
+ @keyframes page_text_slide_up {
+    0% {
+        transform: translateY(350px);
+    }
+    100% {
+       transform: translateY(0px);
+   }
+ }
+
+ #nav-bar {
+     color: #fff;
  }
