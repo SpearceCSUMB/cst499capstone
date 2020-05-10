@@ -209,15 +209,11 @@
                 THREE.ImageUtils.crossOrigin = '';
                 var groundTex = THREE.ImageUtils.loadTexture( modelBaseURL + "concrete.jpg" );
 
-                // assuming you want the texture to repeat in both directions:
                 groundTex.wrapS = THREE.RepeatWrapping; 
                 groundTex.wrapT = THREE.RepeatWrapping;
 
-                // how many times to repeat in each direction; the default is (1,1),
-                //   which is probably why your example wasn't working
-                groundTex.repeat.set( 5, 5 ); 
-                var floorMat = new THREE.MeshLambertMaterial({ map : groundTex });
-                //var floorMat = new THREE.MeshStandardMaterial( { color : 0xB5651D } );
+                groundTex.repeat.set( 1000, 1000 ); 
+                var floorMat = new THREE.MeshLambertMaterial({ map : groundTex, side: THREE.DoubleSide });
                 floorMat.side = THREE.DoubleSide;
                 //create a triangular geometry
                 var floorGeom = new THREE.Geometry();
