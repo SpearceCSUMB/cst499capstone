@@ -82,21 +82,9 @@
             document.innerHTML = 'Your browser doesn\'t seem to support Pointer Lock API';
         }
 
-        function dumpObject(obj, lines = [], isLast = true, prefix = '') {
-            const localPrefix = isLast ? '└─' : '├─';
-            lines.push(`${prefix}${prefix ? localPrefix : ''}${obj.name || '*no-name*'} [${obj.type}]`);
-            const newPrefix = prefix + (isLast ? '  ' : '│ ');
-            const lastNdx = obj.children.length - 1;
-            obj.children.forEach((child, ndx) => {
-                const isLast = ndx === lastNdx;
-                dumpObject(child, lines, isLast, newPrefix);
-            });
-            return lines;
-        }
-
         
         // How fast the player will move
-        var PLAYERSPEED = 60.0;
+        var PLAYERSPEED = 10.0;
         var playerFloor = -0.25;
         var clock;
         var controls;
@@ -219,18 +207,14 @@
                 var plane = new THREE.Mesh( planeGeometry, material );
                 scene.add( plane );
                 */
+                THREE.ImageUtils.crossOrigin = '';
+                var groundTex = THREE.ImageUtils.loadTexture( modelBaseURL + "concrete.jpg" );
 
-                var groundTex = THREE.ImageUtils.loadTexture( "gltf/concrete.jpg" );
-
-                // assuming you want the texture to repeat in both directions:
                 groundTex.wrapS = THREE.RepeatWrapping; 
                 groundTex.wrapT = THREE.RepeatWrapping;
 
-                // how many times to repeat in each direction; the default is (1,1),
-                //   which is probably why your example wasn't working
-                groundTex.repeat.set( 5, 5 ); 
-                var floorMat = new THREE.MeshLambertMaterial({ map : groundTex });
-                //var floorMat = new THREE.MeshStandardMaterial( { color : 0xB5651D } );
+                groundTex.repeat.set( 1000, 1000 ); 
+                var floorMat = new THREE.MeshLambertMaterial({ map : groundTex, side: THREE.DoubleSide });
                 floorMat.side = THREE.DoubleSide;
                 //create a triangular geometry
                 var floorGeom = new THREE.Geometry();
@@ -256,7 +240,7 @@
 
                 loader.load(
                     // resource URL
-                    'gltf/sky/scene.gltf',
+                    modelBaseURL + 'sky/scene.gltf',
                     // called when the resource is loaded
                     function ( gltf ) {
                         
