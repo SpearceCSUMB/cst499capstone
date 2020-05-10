@@ -81,21 +81,9 @@
             document.innerHTML = 'Your browser doesn\'t seem to support Pointer Lock API';
         }
 
-        function dumpObject(obj, lines = [], isLast = true, prefix = '') {
-            const localPrefix = isLast ? '└─' : '├─';
-            lines.push(`${prefix}${prefix ? localPrefix : ''}${obj.name || '*no-name*'} [${obj.type}]`);
-            const newPrefix = prefix + (isLast ? '  ' : '│ ');
-            const lastNdx = obj.children.length - 1;
-            obj.children.forEach((child, ndx) => {
-                const isLast = ndx === lastNdx;
-                dumpObject(child, lines, isLast, newPrefix);
-            });
-            return lines;
-        }
-
         
         // How fast the player will move
-        var PLAYERSPEED = 60.0;
+        var PLAYERSPEED = 10.0;
         var playerFloor = -0.25;
         var clock;
         var controls;
@@ -218,8 +206,8 @@
                 var plane = new THREE.Mesh( planeGeometry, material );
                 scene.add( plane );
                 */
-
-                var groundTex = THREE.ImageUtils.loadTexture( "gltf/concrete.jpg" );
+                THREE.ImageUtils.crossOrigin = '';
+                var groundTex = THREE.ImageUtils.loadTexture( modelBaseURL + "concrete.jpg" );
 
                 // assuming you want the texture to repeat in both directions:
                 groundTex.wrapS = THREE.RepeatWrapping; 
@@ -255,7 +243,7 @@
 
                 loader.load(
                     // resource URL
-                    'gltf/sky/scene.gltf',
+                    modelBaseURL + 'sky/scene.gltf',
                     // called when the resource is loaded
                     function ( gltf ) {
                         
