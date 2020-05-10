@@ -48,7 +48,11 @@ function buildMenuBar(req) {
 
 // root route
 app.get("/", function(req, res){
-   res.render("index.ejs", {"menuBarHTML" : buildMenuBar(req)});
+   res.render("index.ejs");
+});
+
+app.get("/game-stage", function(req, res) {
+  res.render("game-stage.ejs")
 });
 
 app.get("/airplaneSearch", async function(req, res){
@@ -537,9 +541,9 @@ app.post("/adminAuthenticate", async function(req,res) {
 });
 
 // // server listening
-// app.listen("8081", "0.0.0.0", function(){
-//    console.log("Running Express Server...")
-// });
+app.listen("8081", "0.0.0.0", function(){
+   console.log("Running Express Server...")
+});
 
 
 app.listen(process.env.PORT, process.env.IP, function(){
