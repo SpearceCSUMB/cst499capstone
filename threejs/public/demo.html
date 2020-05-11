@@ -297,8 +297,26 @@
                     console.log( 'An error happened' + error);
                 }
             );
-                        
-            util.loadgltfModel(modelBaseURL + 'cardboard_box.glb',scene);
+            
+            util.loadgltfModel(modelBaseURL + 'cardboard_box.glb',scene, new THREE.Matrix4());
+
+            var ladderPos = new THREE.Vector3(0.7,-0.42,0.7);
+            var ladderScale = new THREE.Vector3(0.25,0.25,0.25);
+            var ladderQuat = new THREE.Quaternion();
+            var ladderMat = new THREE.Matrix4().compose(ladderPos,ladderQuat,ladderScale);
+            util.loadgltfModel(modelBaseURL + 'ladder.glb',scene,ladderMat);
+            util.loadgltfModel(modelBaseURL + 'table.glb',scene, new THREE.Matrix4().makeTranslation(1, 4, -0.4));
+            var boxPos = new THREE.Vector3(0.5,-0.4,-0.5);
+            var boxScale = new THREE.Vector3(0.1,0.1,0.1);
+            var boxQuat = new THREE.Quaternion();
+            var boxMat = new THREE.Matrix4().compose(boxPos,boxQuat,boxScale);
+            util.loadgltfModel(modelBaseURL + 'cardboardbox02.glb',scene, boxMat);
+            var boxPos2 = new THREE.Vector3(0.5,-0.4,0.5);
+            var boxScale2 = new THREE.Vector3(0.1,0.1,0.1);
+            var boxQuat2 = new THREE.Quaternion();
+            var boxMat2 = new THREE.Matrix4().compose(boxPos2,boxQuat2,boxScale2);
+            util.loadgltfModel(modelBaseURL + 'cardboardbox01.glb',scene, boxMat2);
+            util.loadgltfModel(modelBaseURL + 'toolbox.glb',scene, new THREE.Matrix4());
             const boxWidth = 1;
             const boxHeight = 1;
             const boxDepth = 1;
