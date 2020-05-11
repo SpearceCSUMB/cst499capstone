@@ -1,7 +1,31 @@
+import * as THREE from '../build/three.module.js';
+import { GLTFLoader } from '../jsm/loaders/GLTFLoader.js';
 export var moveForward = false;
 export var moveBackward = false;
 export var moveLeft = false;
 export var moveRight = false;
+
+export function loadgltfModel(modelURL,scene) {
+    var loader = new GLTFLoader();
+    loader.load(
+        // resource URL
+        modelURL,
+        // called when the resource is loaded
+        function ( gltf ) {
+            scene.add( gltf.scene );
+            },
+            // called while loading is progressing
+            function ( xhr ) {
+                
+                console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+                
+            },
+            // called when loading has errors
+            function ( error ) {
+                console.log( 'An error happened' + error);
+            }
+    );
+}
 
     // A key has been pressed
 export function onKeyDown(event) {

@@ -201,42 +201,47 @@
             scene.add( ambient );
             
             {
-                /*
-                var planeGeometry = new THREE.PlaneGeometry( 200, 200, 32,32 );
-                var material = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
-                var plane = new THREE.Mesh( planeGeometry, material );
-                scene.add( plane );
-                */
-                THREE.ImageUtils.crossOrigin = '';
-                var groundTex = THREE.ImageUtils.loadTexture( modelBaseURL + "concrete.jpg" );
+                //THREE.ImageUtils.crossOrigin = '';
 
-                groundTex.wrapS = THREE.RepeatWrapping; 
-                groundTex.wrapT = THREE.RepeatWrapping;
+                var textureLoader = new THREE.TextureLoader().load(
+                    modelBaseURL + "concrete.jpg",
+                    // Function when resource is loaded
+                    function ( groundTex ) {
+                        // do something with the texture
+                        groundTex.wrapS = THREE.RepeatWrapping;
+                        groundTex.wrapT = THREE.RepeatWrapping;
+                        groundTex.repeat.set( 1000, 1000); 
+                        var floorMat = new THREE.MeshStandardMaterial({ map : groundTex, side: THREE.DoubleSide });
+                        floorMat.name = "floor_material";
+                        floorMat.side = THREE.DoubleSide;
+                        floorMat.map = groundTex; 
 
-                groundTex.repeat.set( 1000, 1000 ); 
-                var floorMat = new THREE.MeshLambertMaterial({ map : groundTex, side: THREE.DoubleSide });
-                floorMat.side = THREE.DoubleSide;
-                //create a triangular geometry
-                var floorGeom = new THREE.Geometry();
-                var floorY = -1;
-                floorGeom.vertices.push( new THREE.Vector3( -50, floorY, -50 ) );
-                floorGeom.vertices.push( new THREE.Vector3(  50, floorY, -50 ) );
-                floorGeom.vertices.push( new THREE.Vector3(  50, floorY, 50 ) );
-                floorGeom.vertices.push( new THREE.Vector3(  -50, floorY, 50 ) );
-                var normal = new THREE.Vector3( 0, 1, 0 ); //optional
-                var color = new THREE.Color( 0xffaa00 ); //optional
-                var materialIndex = 0; //optional
-                var face1 = new THREE.Face3( 0, 1, 2, normal, color, materialIndex );
-                var face2 = new THREE.Face3( 2, 3, 0, normal, color, materialIndex );
+                        var floorGeom = new THREE.PlaneBufferGeometry(100,100,1,1);
 
-                //add the face to the geometry's faces array
-                floorGeom.faces.push( face1 );
-                floorGeom.faces.push( face2 );
+                        //the face normals and vertex normals can be calculated automatically if not supplied above
+                        floorGeom.computeFaceNormals();
+                        floorGeom.computeVertexNormals();
+                        var rotMat = new THREE.Matrix4().makeRotationX(90*Math.PI/180);
+                        var transMat = new THREE.Matrix4().makeTranslation(0, 0, 0.4);
+                        var newMat = rotMat.multiply(transMat);
+                        floorGeom.applyMatrix(newMat);
+                        var floorMesh = new THREE.Mesh( floorGeom, floorMat );
+                        floorMesh.name = "Floor";
+                        floorMesh.material = floorMat;
+                        floorMesh.material.needsUpdate = true;
+                        scene.add( floorMesh );
+                    },
+                    // Function called when download progresses
+                    function ( xhr ) {
+                        console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+                    },
+                    // Function called when download errors
+                    function ( xhr ) {
+                        console.log( 'An error happened' );
+                    }
+                );
 
-                //the face normals and vertex normals can be calculated automatically if not supplied above
-                floorGeom.computeFaceNormals();
-                floorGeom.computeVertexNormals();
-                scene.add( new THREE.Mesh( floorGeom, floorMat ) );
+
 
                 loader.load(
                     // resource URL
@@ -246,18 +251,9 @@
                         
                         gltf.scene.matrixAutoUpdate = false;
                         gltf.scene.matrix.scale(new THREE.Vector3(10,10,10));
-                        
-                        //console.log(dumpObject(gltf.scene).join('\n'));
-                        gltf.scene.traverse( child => {
-                                if ( child.material ) child.material.depthWrite = false;
-                            } );
+
                         scene.add( gltf.scene );
-                        
-                        gltf.animations; // Array<THREE.AnimationClip>
-                        gltf.scene; // THREE.Group
-                        gltf.scenes; // Array<THREE.Group>
-                        gltf.cameras; // Array<THREE.Camera>
-                        gltf.asset; // Object
+
                         },
                             // called while loading is progressing
                             function ( xhr ) {
@@ -270,18 +266,6 @@
                                 console.log( 'An error happened' + error);
                             }
                 );
-                /*
-                const loader = new THREE.CubeTextureLoader();
-                const texture = loader.load([
-                'https://threejsfundamentals.org/threejs/resources/images/cubemaps/computer-history-museum/pos-x.jpg',
-                'https://threejsfundamentals.org/threejs/resources/images/cubemaps/computer-history-museum/neg-x.jpg',
-                'https://threejsfundamentals.org/threejs/resources/images/cubemaps/computer-history-museum/pos-y.jpg',
-                'https://threejsfundamentals.org/threejs/resources/images/cubemaps/computer-history-museum/neg-y.jpg',
-                'https://threejsfundamentals.org/threejs/resources/images/cubemaps/computer-history-museum/pos-z.jpg',
-                'https://threejsfundamentals.org/threejs/resources/images/cubemaps/computer-history-museum/neg-z.jpg',
-                ]);
-                scene.background = texture;
-                */
             
             }
 
@@ -293,7 +277,7 @@
             // called when the resource is loaded
             function ( gltf ) {
                 
-                gltf.scene.matrixAutoUpdate = false;
+                //gltf.scene.matrixAutoUpdate = false;
                 //gltf.scene.matrix.scale(new THREE.Vector3(0.01,0.01,0.01));
                 
                 //console.log(util.dumpObject(gltf.scene).join('\n'));
@@ -301,58 +285,53 @@
                     if ( child.material ) child.material.metalness = 0.1;
                 } );
                 scene.add( gltf.scene );
-                
-                gltf.animations; // Array<THREE.AnimationClip>
-                    gltf.scene; // THREE.Group
-                    gltf.scenes; // Array<THREE.Group>
-                        gltf.cameras; // Array<THREE.Camera>
-                            gltf.asset; // Object
-                        },
-                        // called while loading is progressing
-                        function ( xhr ) {
-                            
-                            console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-                            
-                        },
-                        // called when loading has errors
-                        function ( error ) {
-                            console.log( 'An error happened' + error);
-                        }
-                        );
-                        
-                        const boxWidth = 1;
-                        const boxHeight = 1;
-                        const boxDepth = 1;
-                        const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
-                        
-                        
-                        function render(time) {
-                            time *= 0.001;  // convert time to seconds
-                            
-                            renderer.render(scene, camera);
-                            requestAnimationFrame(render);
-                            
-                            var delta = clock.getDelta();
-                            animatePlayer(delta);
-                        }
-                        
-                        function onWindowResize() {
-                            
-                            camera.aspect = (window.innerWidth-100) / (window.innerHeight-100);
-                            camera.updateProjectionMatrix();
-                            
-                            renderer.setSize( window.innerWidth-100, window.innerHeight-100 );
-                            
-                            render();
-                        }
-                        
-                        window.addEventListener( 'resize', onWindowResize, false );
-                        onWindowResize();
-                        requestAnimationFrame(render);
-                    }
-                    main();
+                },
+                // called while loading is progressing
+                function ( xhr ) {
                     
-                </script>
+                    console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+                    
+                },
+                // called when loading has errors
+                function ( error ) {
+                    console.log( 'An error happened' + error);
+                }
+            );
+                        
+            util.loadgltfModel(modelBaseURL + 'cardboard_box.glb',scene);
+            const boxWidth = 1;
+            const boxHeight = 1;
+            const boxDepth = 1;
+            const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
+            
+            
+            function render(time) {
+                time *= 0.001;  // convert time to seconds
+                
+                renderer.render(scene, camera);
+                requestAnimationFrame(render);
+                
+                var delta = clock.getDelta();
+                animatePlayer(delta);
+            }
+                        
+            function onWindowResize() {
+                console.log(util.dumpObject(scene).join('\n'));
+                camera.aspect = (window.innerWidth-100) / (window.innerHeight-100);
+                camera.updateProjectionMatrix();
+                
+                renderer.setSize( window.innerWidth-100, window.innerHeight-100 );
+                
+                render();
+            }
+            
+            window.addEventListener( 'resize', onWindowResize, false );
+            onWindowResize();
+            requestAnimationFrame(render);
+        }
+        main();
+                    
+</script>
                 
                 <canvas id="c" width="800" height="400"></canvas>
                 
